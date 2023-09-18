@@ -22,7 +22,7 @@ ALTER TABLE TRAILS ADD CONSTRAINT Max_Difficulty CHECK (difficulty <= 3);
     
 DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
-	userID int(10) NOT NULL UNIQUE,
+	userID int(10) UNIQUE,
     username varchar(15) NOT NULL,
     birth_date date NOT NULL,
     sch_score int(5) DEFAULT 0,
@@ -70,9 +70,9 @@ INSERT INTO TRAILS (trail_name, zipcode, city, start_lat, start_long, end_lat, e
 VALUES ('CSUF Arboretum Loop', 92831, 'Fullerton', 33.88801, -117.88519, NULL, NULL, 35, 1),
 		('San Gabriel River Trail', 91702, 'Azusa', 34.15984, -117.90826, 33.74234, -118.11418, 670, 3),
         ('Pacific Electric Trail', 91730, 'Rancho Cucamonga', 34.09514, -117.70402, 33.88801, -117.88519, 117, 2),
-        ('Fullerton Loop', 92831, 'Fullerton', 33.88043, -117.88519, NULL, NULL, 35, 1),
-        ('CSUF Arboretum', 92831, 'Fullerton', 33.88801, -117.88519, 33.88801, -117.88519, 35, 2),
-        ('CSUF Arboretum', 92831, 'Fullerton', 33.88801, -117.88519, 33.88801, -117.88519, 35, 3);
+        ('Fullerton Loop', 92831, 'Fullerton', 33.88033, -117.92604, NULL, NULL, 247 , 3),
+        ('Santiago Creek Trail', 92706, 'Santa Ana', 33.77311, -117.86322, 33.7963, -117.76095, 195, 2),
+        ('San Diego Creek Trail', 92602, 'Irvine', 33.64507, -117.87047, 33.67258, -117.78789, 140, 1);
        
 
 
