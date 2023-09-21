@@ -70,18 +70,6 @@ CREATE TABLE TRAIL_FEATURES (
     foreign key (trailID) references TRAILS (trailID),
     foreign key (featureID) references FEATURE_LIST (featureID)
 );
-
-
--- !!!!!!!! THIS SHOULD BE A CREATE VIEW !!!!!!!!!
-
-
--- THis begins our more complex, combination tables
--- CREATE TABLE USER_COMPLETES (
--- 	userID int(10) NOT NULL,
--- trailID int(5) NOT NULL,
---    difficulty int(1),
---    PRIMARY KEY(userID, trailID,)
--- );
  
 											
 -- This trigger will update the sch_score of the user as they mark a hike as completed
@@ -133,11 +121,11 @@ VALUES ('Enterprise', '2005-12-20'),
         ('Cerritos', '1965-12-23');
         
 INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
-VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL),
-		(2, 4, NULL),(2, 5, NULL),(2, 2, 1),
-        (3, 3, 1),
-        (4, 1, NULL),(4, 3, NULL),
-        (5, 1, NULL),(5, 2, 1),(5, 5, NULL), (5, 4, NULL);
+VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL), (1, 6, NULL),
+		(2, 4, NULL),(2, 5, NULL),(2, 2, 1), (2, 6, 1),
+        (3, 3, 1), (3, 6, NULL),
+        (4, 1, NULL),(4, 3, NULL), (4, 6, NULL),
+        (5, 1, NULL),(5, 2, 1),(5, 5, NULL), (5, 4, NULL), (5, 6, 1);
 
 INSERT INTO DESIRED_TRAILS(userID, trailID)
 VALUES (2, 3),
@@ -153,29 +141,35 @@ VALUES (2, 3),
          
         
 
-    
-	
+-- This is an index of all trailID their trail_Name and city
+DROP VIEW IF EXISTS Trail_Index;
 CREATE VIEW Trail_Index AS SELECT trailID, trail_Name, city FROM TRAILS;
 SELECT* FROM Trail_Index;
 
-
+-- This index maintains which featureID corresponds to which feature
+DROP VIEW IF EXISTS Feature_Index;
 CREATE VIEW Feature_Index AS SELECT featureID, feature_Name FROM FEATURE_LIST;
 SELECT* FROM Feature_Index ORDER BY featureID;
 
-CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, TRAILS.trail_Name, COMPLETED_TRAILS.favorited
-FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
-LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
-SELECT* FROM User_Completes ORDER BY userID; 
-
-CREATE VIEW User_Example AS SELECT User_Completes.userID, User_Completes.username, TRAILS.trail_Name
-FROM User_Completes LEFT JOIN TRAILS ON User_Completes.trailID = TRAILS.trailID; 
-SELECT* FROM User_Example ORDER BY userID;
-
+-- This index produces which trails have which features
+DROP VIEW IF EXISTS Trail_Feature_Index;
 CREATE VIEW Trail_Feature_Index AS SELECT TRAILS.trail_Name, FEATURE_LIST.feature_Name
 FROM TRAILS LEFT JOIN TRAIL_FEATURES ON TRAIL_FEATURES.trailID = TRAILS.trailID
 LEFT JOIN FEATURE_LIST ON TRAIL_FEATURES.featureID = FEATURE_LIST.featureID;
 SELECT* FROM Trail_Feature_Index ORDER BY trail_Name;
 
+-- This is a view of all the various trails a user has completed, with trail_Name, and if they've favorited a completed trail
+DROP VIEW IF EXISTS User_Completes;
+CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, TRAILS.trail_Name, COMPLETED_TRAILS.favorited
+FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
+LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
+SELECT* FROM User_Completes ORDER BY userID; 
+
+-- This allows us to display all the users that have completed a given trail
+DROP VIEW IF EXISTS Who_Hiked;
+CREATE VIEW Who_Hiked AS SELECT trail_Name, username
+FROM User_Completes;
+SELECT* FROM Who_Hiked ORDER BY trail_Name;
         
         
         
