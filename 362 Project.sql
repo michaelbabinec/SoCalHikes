@@ -26,7 +26,7 @@ CREATE TABLE USERS (
     username varchar(15) NOT NULL,
     birth_date date NOT NULL,
     sch_score int(5) DEFAULT 0,
-    trails_completed int(3) DEFAULT 0,
+    trail_count int(3) DEFAULT 0,
     PRIMARY KEY (UserID)
    
     
@@ -71,15 +71,34 @@ CREATE TABLE TRAIL_FEATURES (
     foreign key (featureID) references FEATURE_LIST (featureID)
 );
 
--- This trigger will update the sch_score of the user as they mark a hike as completed
 
--- CREATE TRIGGER sch_score_UPDATE AFTER INSERT ON completed_trails for each row
--- UPDATE USERS 
-		-- SET sch_score = sch_score + TRAILS.diffculty
+-- !!!!!!!! THIS SHOULD BE A CREATE VIEW !!!!!!!!!
+
+
+-- THis begins our more complex, combination tables
+-- CREATE TABLE USER_COMPLETES (
+-- 	userID int(10) NOT NULL,
+-- trailID int(5) NOT NULL,
+--    difficulty int(1),
+--    PRIMARY KEY(userID, trailID,)
+-- );
+ 
+											
+-- This trigger will update the sch_score of the user as they mark a hike as completed
+-- CREATE TRIGGER sch_score_UPDATE AFTER UPDATE ON COMPLETED_TRAILS
+-- FOR EACH ROW BEGIN
+
+-- UPDATE USERS
+--		-- SET trail_count = COUNT(COMPLETED_TRAILS) UNION ALL COUNT(USERS)
+        -- WHERE userID = USERS.userID;
+        
 	-- WHERE
 	-- NEW.USERS.completed_trails = TRAILS.trailID;
+-- END;
 
---
+
+
+
 
 -- This would be Trail Data, our database would be live with information like this already, and expanding with time and additions
 INSERT INTO TRAILS (trail_name, zipcode, city, start_lat, start_long, end_lat, end_long, completion_time, difficulty)
@@ -94,8 +113,15 @@ VALUES ('CSUF Arboretum Loop', 92831, 'Fullerton', 33.88801, -117.88519, NULL, N
 INSERT INTO FEATURE_LIST (feature_Name)
 VALUES ('Unpaved'), ('Partially Paved'), ('Paved'), ('View'), ('Dog Friendly'), ('Waterfall'), ('Bikeable'), ('Coastal'), ('Pond'), ('River'), ('Lake'), ('Public Bathrooms'), ('Kid Friendly'), ('Wheelchair Friendly');
 
--- INSERT INTO TRAIL_FEATURES(trailID, featureID)
--- VALUES (00001, 
+-- This insert is marking trails as having certain features, in accordance with our index
+INSERT INTO TRAIL_FEATURES(trailID, featureID)
+ VALUES (1, 2), (1, 5), (1, 6), (1, 11), (1, 14), (1, 13), (1, 12),
+		(2, 7), (2, 4), (2, 3),
+        (3, 2), (3, 5), (3, 13), (3, 10),
+        (4, 2), (4, 9), (4, 7),(4, 4),
+        (5, 2), (5, 8),(5, 13), (5, 14), (5, 10), (5, 4),
+        (6, 3), (6, 7), (6, 1), (6, 12), (6, 10), (6, 4), (6, 9);
+
 
 
 -- This is dummy data, as users should be created in app
@@ -106,17 +132,49 @@ VALUES ('Enterprise', '2005-12-20'),
         ('Titan', '1984-07-18'),
         ('Cerritos', '1965-12-23');
         
+INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
+VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL),
+		(2, 4, NULL),(2, 5, NULL),(2, 2, 1),
+        (3, 3, 1),
+        (4, 1, NULL),(4, 3, NULL),
+        (5, 1, NULL),(5, 2, 1),(5, 5, NULL), (5, 4, NULL);
+
+INSERT INTO DESIRED_TRAILS(userID, trailID)
+VALUES (2, 3),
+        (3, 4), (3, 2), (3, 5),
+        (4, 5),(4, 4),
+        (5, 3);
+         
+         
         
+        
+        
+        
+         
+        
+
+    
 	
-        
-CREATE VIEW Trail_Index AS SELECT trailID, trail_Name FROM TRAILS;
-SHOW CREATE VIEW Trail_Index;
+CREATE VIEW Trail_Index AS SELECT trailID, trail_Name, city FROM TRAILS;
+SELECT* FROM Trail_Index;
+
 
 CREATE VIEW Feature_Index AS SELECT featureID, feature_Name FROM FEATURE_LIST;
-SHOW CREATE VIEW Feature_Index;
+SELECT* FROM Feature_Index ORDER BY featureID;
 
--- CREATE VIEW Trail_Feature_Index AS SELECT TRAIL_FEATURES.featureID , FEATURE_LIST.feature_Name
--- FROM TRAIL_FEATURES LEFT JOIN FEATURE_LIST ON TRAIL_FEATURES.featureID = FEATURE_LIST.featureID;
+CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, TRAILS.trail_Name, COMPLETED_TRAILS.favorited
+FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
+LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
+SELECT* FROM User_Completes ORDER BY userID; 
+
+CREATE VIEW User_Example AS SELECT User_Completes.userID, User_Completes.username, TRAILS.trail_Name
+FROM User_Completes LEFT JOIN TRAILS ON User_Completes.trailID = TRAILS.trailID; 
+SELECT* FROM User_Example ORDER BY userID;
+
+CREATE VIEW Trail_Feature_Index AS SELECT TRAILS.trail_Name, FEATURE_LIST.feature_Name
+FROM TRAILS LEFT JOIN TRAIL_FEATURES ON TRAIL_FEATURES.trailID = TRAILS.trailID
+LEFT JOIN FEATURE_LIST ON TRAIL_FEATURES.featureID = FEATURE_LIST.featureID;
+SELECT* FROM Trail_Feature_Index ORDER BY trail_Name;
 
         
         
