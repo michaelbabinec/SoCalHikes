@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
 	userID int(10) serial default value,
     username varchar(15) NOT NULL,
+    passwrd varchar(25) NOT NULL,
     birth_date date NOT NULL,
     sch_score int(5) DEFAULT 0,
     trail_count int(3) DEFAULT 0,
@@ -120,30 +121,34 @@ VALUES ('CSUF Arboretum Loop', 92831, 'Fullerton', 33.88801, -117.88519, NULL, N
         ('Pacific Electric Trail', 91730, 'Rancho Cucamonga', 34.09514, -117.70402, 33.88801, -117.88519, 117, 2),
         ('Fullerton Loop', 92831, 'Fullerton', 33.88033, -117.92604, NULL, NULL, 247, 3),
         ('Santiago Creek Trail', 92706, 'Santa Ana', 33.77311, -117.86322, 33.7963, -117.76095, 195, 2),
-        ('San Diego Creek Trail', 92602, 'Irvine', 33.64507, -117.87047, 33.67258, -117.78789, 140, 1);
+        ('San Diego Creek Trail', 92602, 'Irvine', 33.64507, -117.87047, 33.67258, -117.78789, 140, 1),
+        ('Hidden Valley Trail', 92277, 'Twentynine Palms', 34.01232, -116.16805, NULL, NULL, 24, 1);
 	
 -- This data is a list of the various trail features
 INSERT INTO FEATURE_LIST (feature_Name)
-VALUES ('Unpaved'), ('Partially Paved'), ('Paved'), ('View'), ('Dog Friendly'), ('Waterfall'), ('Bikeable'), ('Coastal'), ('Pond'), ('River'), ('Lake'), ('Public Bathrooms'), ('Kid Friendly'), ('Wheelchair Friendly');
+VALUES ('Unpaved'), ('Partially Paved'), ('Paved'), ('View'), ('Dog Friendly'), ('Waterfall'), ('Bikeable'), ('Coastal'), ('Pond'), ('River'), 
+	('Lake'), ('Public Bathrooms'), ('Kid Friendly'), ('Wheelchair Friendly'), ('Hike'), ('Walkable'), ('Paid Access'), ('No Dogs'), ('Historic'), ('Wildlife'),
+    ('Rocky'),('National Park'),('National Forest'),('Public Land'), ('City Route'), ('Campground'), ('Local Flora'), ('Birdwatching') ;
 
 -- This insert is marking trails as having certain features, in accordance with our index
 INSERT INTO TRAIL_FEATURES(trailID, featureID)
- VALUES (1, 2), (1, 5), (1, 6), (1, 11), (1, 14), (1, 13), (1, 12),
-		(2, 7), (2, 4), (2, 3),
+ VALUES (1, 2), (1, 13), (1, 16), (1, 11), (1, 4), (1, 27), (1, 28), (1, 20), (1, 18),
+		(2, 5), (2, 2), (2, 3),
         (3, 2), (3, 5), (3, 13), (3, 10),
         (4, 2), (4, 9), (4, 7),(4, 4),
         (5, 2), (5, 8),(5, 13), (5, 14), (5, 10), (5, 4),
-        (6, 3), (6, 7), (6, 1), (6, 12), (6, 10), (6, 4), (6, 9);
+        (6, 3), (6, 7), (6, 1), (6, 12), (6, 10), (6, 4), (6, 9),
+        (7, 13), (7, 15), (7, 16), (7, 4), (7, 27), (7, 20), (7, 21), (7, 19), (7, 17), (7, 18), (7, 22), (7, 1);
 
 
 
 -- This is dummy data, as users should be created in app
-INSERT INTO USERS (username, birth_date)
-VALUES ('Enterprise', '2005-12-20'),
-		('Defiant', '2000-08-06'),
-        ('Voyager', '1993-10-15'),
-        ('Titan', '1984-07-18'),
-        ('Cerritos', '1965-12-23');
+INSERT INTO USERS (username, passwrd, birth_date)
+VALUES ('Enterprise', '1234567890', '2005-12-20'),
+		('Defiant','1234567890', '2000-08-06'),
+        ('Voyager', '1234567890', '1993-10-15'),
+        ('Titan', '1234567890', '1984-07-18'),
+        ('Cerritos', '1234567890', '1965-12-23');
         
 INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
 VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL), (1, 6, NULL),
