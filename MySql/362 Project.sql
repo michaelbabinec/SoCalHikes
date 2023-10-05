@@ -128,14 +128,15 @@ VALUES ('CSUF Arboretum Loop', 92831, 'Fullerton', 33.88801, -117.88519, NULL, N
 INSERT INTO FEATURE_LIST (feature_Name)
 VALUES ('Unpaved'), ('Partially Paved'), ('Paved'), ('View'), ('Dog Friendly'), ('Waterfall'), ('Bikeable'), ('Coastal'), ('Pond'), ('River'), 
 	('Lake'), ('Public Bathrooms'), ('Kid Friendly'), ('Wheelchair Friendly'), ('Hike'), ('Walkable'), ('Paid Access'), ('No Dogs'), ('Historic'), ('Wildlife'),
-    ('Rocky'),('National Park'),('National Forest'),('Public Land'), ('City Route'), ('Campground'), ('Local Flora'), ('Birdwatching') ;
+    ('Rocky'),('National Park'),('National Forest'),('Public Land'), ('City Route'), ('Campground'), ('Local Flora'), ('Birdwatching'), ('Stroller Friendly'), ('Road Biking'),
+    ('Running'), ('No shade'), ('Mountain Biking'), ('Forest');
 
 -- This insert is marking trails as having certain features, in accordance with our index
 INSERT INTO TRAIL_FEATURES(trailID, featureID)
  VALUES (1, 2), (1, 13), (1, 16), (1, 11), (1, 4), (1, 27), (1, 28), (1, 20), (1, 18),
-		(2, 5), (2, 2), (2, 3),
-        (3, 2), (3, 5), (3, 13), (3, 10),
-        (4, 2), (4, 9), (4, 7),(4, 4),
+		(2, 5), (2, 14), (2, 13), (2, 15), (2, 16), (2, 28), (2, 8), (2, 3), (2, 10), (2, 4), (2, 27), (2, 20), (2, 29), (2, 30),
+        (3, 3), (3, 5), (3, 13), (3, 14), (3, 29), (3, 30), (3, 16), (3, 28), (3, 31), (3, 4), (3, 27), (3, 32),
+        (4, 5), (4, 14), (4, 13),(4, 29), (3, 15),
         (5, 2), (5, 8),(5, 13), (5, 14), (5, 10), (5, 4),
         (6, 3), (6, 7), (6, 1), (6, 12), (6, 10), (6, 4), (6, 9),
         (7, 13), (7, 15), (7, 16), (7, 4), (7, 27), (7, 20), (7, 21), (7, 19), (7, 17), (7, 18), (7, 22), (7, 1);
