@@ -38,11 +38,15 @@ CREATE TABLE COMPLETED_TRAILS (
 	userID int(10) NOT NULL,
     trailID int(5) NOT NULL,
     favorited boolean,
+    rating int(1),
     PRIMARY KEY (userID, trailID),
 	foreign key (userID) references USERS (userID),
     foreign key (trailID) references TRAILS (trailID)
     
 );
+ALTER TABLE COMPLETED_TRAILS ADD CONSTRAINT Max_Rating CHECK (rating <= 9);
+ALTER TABLE COMPLETED_TRAILS ADD CONSTRAINT Min_Rating CHECK (rating >= 0);
+
     
 DROP TABLE IF EXISTS DESIRED_TRAILS;
 CREATE TABLE DESIRED_TRAILS (
