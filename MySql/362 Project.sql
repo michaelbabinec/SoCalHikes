@@ -88,19 +88,28 @@ LEFT JOIN FEATURE_LIST ON TRAIL_FEATURES.featureID = FEATURE_LIST.featureID;
 
 -- This is a view of all the various trails a user has completed, with trail_Name, and if they've favorited a completed trail
 DROP VIEW IF EXISTS User_Completes;
-CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, TRAILS.trail_Name, COMPLETED_TRAILS.favorited
+CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, COMPLETED_TRAILS.favorited, TRAILS.trail_Name, TRAILS.difficulty 
 FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
 LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
+
 
 -- This allows us to display all the users that have completed a given trail
 DROP VIEW IF EXISTS Who_Hiked;
 CREATE VIEW Who_Hiked AS SELECT trail_Name, username
 FROM User_Completes;
+
+
+
  
 											
 -- This trigger will update the sch_score of the user as they mark a hike as completed
--- CREATE TRIGGER sch_score_UPDATE AFTER UPDATE ON COMPLETED_TRAILS
--- FOR EACH ROW BEGIN
+ CREATE TRIGGER sch_score_UPDATE AFTER UPDATE ON COMPLETED_TRAILS
+ FOR EACH ROW 
+ BEGIN
+ 
+SELECT difficulty AS amount FROM USERS INNER JOIN User_Completes ON USERS.userID = User_Completes.userID;
+ 
+ END;
 
 -- UPDATE USERS
 --		-- SET trail_count = COUNT(COMPLETED_TRAILS) UNION ALL COUNT(USERS)
@@ -109,7 +118,6 @@ FROM User_Completes;
 	-- WHERE
 	-- NEW.USERS.completed_trails = TRAILS.trailID;
 -- END;
-
 
 
 
@@ -182,6 +190,7 @@ SELECT* FROM Trail_Feature_Index ORDER BY trail_Name;
 SELECT* FROM User_Completes ORDER BY userID; 
 
 SELECT* FROM Who_Hiked ORDER BY trail_Name;
+
         
         
         
