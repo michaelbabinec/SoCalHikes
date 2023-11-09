@@ -43,8 +43,8 @@ body {
     list-style-type: none;
 }
 
-/* Style the recipe card container */
-.recipe-card {
+/* Style the hike card container */
+.hike-card {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -58,19 +58,19 @@ body {
     max-width: 30%;
 }
 
-/* Style the recipe image */
-.recipe-card img {
+/* Style the hike image */
+.hike-card img {
     max-width: 50%;
 }
 
-/* Style the recipe name */
-.recipe-card h2 {
+/* Style the hike name */
+.hike-card h2 {
     font-size: 24px;
     margin-top: 10px;
 }
 
-/* Style the recipe description */
-.recipe-card p {
+/* Style the hike description */
+.hike-card p {
     color: #333;
     font-size: 16px;
     margin-top: 50px;

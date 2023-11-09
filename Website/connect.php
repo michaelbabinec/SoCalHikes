@@ -6,13 +6,19 @@
 
     $conn = new mysqli('localhost', 'root', 'My*SQL*Password', 'SoCalHikes');
     if(conn->connect_error){
-        die('Connection Failed:  '.$conn->connect_error)
-    }else{
-        $stmt = $conn->prepare("INSERT INTO COMPLETED_TRAILS (userID, trailID, favorited, rating) VALUES (?, ?, ?, ?)");
-        $stmt-bind_param("iiii", $userid, $trailID, $favorited, $rating);
-        echo "Hike Successfuly Saved";
-        $stmt->close();
-        $conn->close();
+        die("Connection Failed:  ". mysqli_connect_error())
     }
+    
+    
+    
+        $sql = "INSERT INTO COMPLETED_TRAILS (userID, trailID, favorited, rating) VALUES ($userID, $trailID, $favorited, $rating)";
+        if (mysqli_query($conn, $sql)) { 
+            echo "Hike saved successfully. Great Job!";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
 
+
+        
+mysqli_close($conn);
 ?>
