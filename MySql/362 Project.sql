@@ -106,25 +106,6 @@ FROM User_Completes;
 
  
 											
--- This trigger will update the sch_score of the user as they mark a hike as completed
--- CREATE TRIGGER sch_score_UPDATE AFTER UPDATE ON COMPLETED_TRAILS
--- FOR EACH ROW 
--- BEGIN
- 
--- SELECT difficulty AS amount FROM USERS INNER JOIN User_Completes ON USERS.userID = User_Completes.userID;
- 
- -- END;
-
--- UPDATE USERS
---		-- SET trail_count = COUNT(COMPLETED_TRAILS) UNION ALL COUNT(USERS)
-        -- WHERE userID = USERS.userID;
-        
-	-- WHERE
-	-- NEW.USERS.completed_trails = TRAILS.trailID;
--- END;
-
-
-
 
 -- This would be Trail Data, our database would be live with information like this already, and expanding with time and additions
 INSERT INTO TRAILS (trail_name, zipcode, city, start_lat, start_long, end_lat, end_long, completion_time, difficulty)
