@@ -76,9 +76,20 @@ CREATE TABLE TRAIL_FEATURES (
     foreign key (featureID) references FEATURE_LIST (featureID)
 );
 
+CREATE TRIGGER sch_score_UPDATE AFTER INSERT ON COMPLETED_TRAILS FOR EACH ROW
+UPDATE users
+set sch_score = sch_score + (SELECT difficulty FROM TRAILS WHERE trailID = new.trailID),
+	trail_count = trail_count + 1
+where userID = NEW.userID;
+
 -- This is an index of all trailID their trail_Name and city
 DROP VIEW IF EXISTS Trail_Index;
 CREATE VIEW Trail_Index AS SELECT trailID, trail_Name, city FROM TRAILS;
+
+DROP VIEW IF EXISTS User_Index;
+CREATE VIEW User_Index AS SELECT u.userID, u.username, u.trail_count, u.sch_score, (SELECT trail_name WHERE favorited = 1) as favorite_trails
+FROM USERS u LEFT JOIN COMPLETED_TRAILS ct ON u.userid = ct.userID
+LEFT JOIN TRAILS t ON ct.trailID = t.trailID;
 
 -- This index maintains which featureID corresponds to which feature
 DROP VIEW IF EXISTS Feature_Index;
@@ -148,7 +159,7 @@ INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
 VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL), (1, 6, NULL),
 		(2, 4, NULL),(2, 5, NULL),(2, 2, 1), (2, 6, 1),
         (3, 3, 1), (3, 6, NULL),
-        (4, 1, NULL),(4, 3, NULL), (4, 6, NULL),
+        (4, 1, NULL),(4, 3, NULL), (4, 6, 1),
         (5, 1, NULL),(5, 2, 1),(5, 5, NULL), (5, 4, NULL), (5, 6, 1);
 
 INSERT INTO DESIRED_TRAILS(userID, trailID)
@@ -175,6 +186,8 @@ SELECT* FROM Trail_Feature_Index ORDER BY trail_Name;
 SELECT* FROM User_Completes ORDER BY userID; 
 
 SELECT* FROM Who_Hiked ORDER BY trail_Name;
+
+SELECT* FROM User_Index WHERE favorite_trails IS NOT NULL;
 
         
         
