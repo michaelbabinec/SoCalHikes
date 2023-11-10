@@ -4,7 +4,7 @@
     $favorited = 1;
     $rating = 5;
 
-    $conn = new mysqli('localhost', 'root', 'My*SQL*Password', 'SoCalHikes');
+    $conn = new mysqli('socalhikes-db.ckokr1pnnpp1.us-east-2.rds.amazonaws.com', 'admin', 'My*SQL*Password', 'SoCalHikes');
     if(conn->connect_error){
         die("Connection Failed:  ". mysqli_connect_error())
     }
