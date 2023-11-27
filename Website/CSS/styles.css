@@ -6,27 +6,34 @@
 
 
 .Title {   
-    background-color: #fff;
-    border: 1px solid #ccc;
-    font-family: 'Satisfy', cursive;
-    border-radius: 5px;
+    background-color: #ab9989;
+    border: 3px solid #7a6a5d;
+    font-family:'Courier', monospace;
+    border-radius: 50x;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
-    padding-bottom: 20px;
-    padding-right: 10px;
+    padding: 25px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 50px;
 }
 
-h2, h4 {
-    color: #ff4646;
+
+
+h1 {
+    color: #474038;
+    font-size: 250%
+    
+    }
+
+h2 {
+    color: #87995c;
+    font-size: 175%;
 }
 
 p {
-  /*  color: white; */
+    color: #b5aea6;
     text-align: center;
     margin-bottom: 100px;
 }
@@ -34,6 +41,7 @@ p {
 body {
     background-image: url('images/background2.webp');
     font-family: Arial, sans-serif;
+    font-size: 100%
 }
 
 .ingredients-list {
@@ -119,21 +127,28 @@ body {
 /* Dropdown button style */
 .dropdown-button {
     background-color: #333;
-    color: #fff;
+    top: 0px; /*Affixes to corner*/
+    color: #ffffff;
+    position: fixed; /*Follows Screen when Scrolling*/
+    color: "#ffffff";
+    font-size: 10px;
     padding: 15px 30px; /* Increased padding */
-    border: none;
+    border-bottom: 2px solid #cccccc;
     cursor: pointer;
+}
+
+.dropdown-button:hover, .dropdown-button:focus {
+    background-color:#242424;
 }
 
 /* Dropdown menu style */
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 55px; /* Adjust this value to position the menu as desired */
+    display: inside;
+    position: fixed;
+    background-color: #333;
+    top: 45px; /* Adjust this value to position the menu as desired */
     left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    list-style: none;
+    list-style: type;
     padding: 0;
 }
 
@@ -146,13 +161,6 @@ body {
 /* Dropdown menu item link style */
 .dropdown-menu a {
     text-decoration: none;
-    color: #333;
-}
-
-
-h1 {
-    margin-left: 40px;
-    width: 70%;
-    margin-bottom: 10px;
+    color: #ffffff;;
 }
 
