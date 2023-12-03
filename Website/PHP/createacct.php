@@ -1,25 +1,17 @@
 <?php
 
-$conn = new mysqli('localhost', 'root', 'My*SQL*Password', 'SoCalHikes');
-if($conn->connect_error){
-        die("Connection Failed:  ". mysqli_connect_error());
-    }
-else echo "Working";
-
-
+include('connect.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirmPassword'];
 $birthday = $_POST['birthday'];
 
-
 // Check if passwords match
 if ($_POST['password'] !== $_POST['confirmPassword'])
 {
     die("Error: Passwords do not match");
 }
-
 
 $hashed_pass = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password, this will be sent to DB
 
@@ -33,9 +25,5 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-
-
-
-
 
 ?>

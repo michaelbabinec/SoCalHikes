@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS SoCalHikes;
 CREATE DATABASE SoCalHikes;
 USE SoCalHikes;
 
+
+
 -- This is the basic trail table, this will hold the main information regarding each specific trail.
 DROP TABLE IF EXISTS TRAILS;
 CREATE TABLE TRAILS (
@@ -24,7 +26,7 @@ DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
 	userID int(10) serial default value,
     username varchar(15) NOT NULL,
-    passwrd varchar(25) NOT NULL,
+    passwrd varchar(60) NOT NULL,
     birthday date NOT NULL,
     sch_score int(5) DEFAULT 0,
     trail_count int(3) DEFAULT 0,

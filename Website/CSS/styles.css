@@ -102,7 +102,7 @@ body {
 }
 
 .btlogin-button {
-    background-color: #45a049;
+    background-color: #4caf50;
     border-color: #765c48;
     border-radius: 5px;
     color: #765c48;
@@ -110,7 +110,10 @@ body {
     font-size: 16px;
     margin-top: 25px;
     padding: 10px 20px;
-    transition: background-color 0.3s;
+}
+.btlogin-button:hover{
+
+    background-color: #45a049;
 }
 
 .like-button, .dislike-button img{
@@ -212,13 +215,13 @@ input {
     background-color: #45a049;
 }
 
-button[type="submit"] {
+input[type="submit"] {
     background-color: #4caf50;
     color: #fff;
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+input[type="submit"]:hover {
     background-color: #45a049;
 }
 

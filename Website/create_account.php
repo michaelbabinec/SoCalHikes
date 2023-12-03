@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 
 <body id = "inputbox">
     
-    <form action="PHP/createacct.php" method="post" class="registration-form">
+    <form action = 'PHP/createacct.php' method="post" class="registration-form">
         <h2>Create Account</h2>
         <label for= "username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -25,6 +25,8 @@
 
         <input type="submit" value="Create Account">
     </form>
+
+
 </body>
 
 <footer>
