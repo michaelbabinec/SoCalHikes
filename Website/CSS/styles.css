@@ -28,7 +28,7 @@ h1 {
     }
 
 h2 {
-    color: #71804f;
+    color: #ffffff;
     font-size: 175%;
     text-align: center;
 }
@@ -101,13 +101,14 @@ body {
     transition: background-color 0.3s;
 }
 
-.remove-button {
-    background-color: #ff6b6b;
-    border: none;
+.btlogin-button {
+    background-color: #45a049;
+    border-color: #765c48;
     border-radius: 5px;
-    color: #fff;
+    color: #765c48;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 25px;
     padding: 10px 20px;
     transition: background-color 0.3s;
 }
@@ -129,7 +130,6 @@ body {
 /* Dropdown button style */
 .dropdown-button {
     background-color: #333;
-    align-items left; /*Affixes to corner*/
     color: #ffffff;
     position: fixed; /*Follows Screen when Scrolling*/
     color: "#ffffff";
@@ -163,11 +163,12 @@ body {
 /* Dropdown menu item link style */
 .dropdown-menu a {
     text-decoration: none;
-    color: #ffffff;;
+    color: #ffffff;
 }
 
 
 #inputbox {
+    color: #ffffff;
     font-family: serif;
     display: flex;
     flex-flow: column;
@@ -175,6 +176,7 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
 
 .registration-form {
     background-color: #7a6a5d;
@@ -187,8 +189,8 @@ body {
 
 label {
     display: block;
-    margin: 10px 0 5px;
-    color: #555;
+    margin: 10px 0 7px;
+    color: #ffffff;
 }
 
 input {
@@ -200,13 +202,23 @@ input {
     border-radius: 4px;
 }
 
-input[type="submit"] {
+.submit{
     background-color: #4caf50;
     color: #fff;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.submit:hover {
+    background-color: #45a049;
+}
+
+button[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
     background-color: #45a049;
 }
 

@@ -25,7 +25,7 @@ CREATE TABLE USERS (
 	userID int(10) serial default value,
     username varchar(15) NOT NULL,
     passwrd varchar(25) NOT NULL,
-    birth_date date NOT NULL,
+    birthday date NOT NULL,
     sch_score int(5) DEFAULT 0,
     trail_count int(3) DEFAULT 0,
     PRIMARY KEY (UserID)
@@ -145,7 +145,7 @@ INSERT INTO TRAIL_FEATURES(trailID, featureID)
 
 
 -- This is dummy data, as users should be created in app
-INSERT INTO USERS (username, passwrd, birth_date)
+INSERT INTO USERS (username, passwrd, birthday)
 VALUES ('Enterprise', '1234567890', '2005-12-20'),
 		('Defiant','1234567890', '2000-08-06'),
         ('Voyager', '1234567890', '1993-10-15'),

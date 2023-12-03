@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
         <ul class="dropdown-menu">
             <li><a href="test1.html">Liked Hikes</a></li>
             <li><a href="user_complete_hike.html">Log Hike</a></li>
-            <li><a href="create_account.html">Create_Account</a></li>
+            <li><a href="create_account.html">Create Account</a></li>
         </ul>
     </div>
 
