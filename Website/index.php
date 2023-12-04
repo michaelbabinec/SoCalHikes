@@ -36,17 +36,7 @@
     </iframe>
 </div>
     
-    <div class="hike-card" id="Iafe">
-        <img src="hike.jpg" alt="Popular Hikes">
-        <h2>Popular Hikes</h2>
-        <p>Five Hike List Can Go Here</p>
-        <div class="action-buttons">
-            <button class="dislike-button">Dislike</button>
-            <button class="like-button">Like</button>
-        </div>
-    </div>
-    <script src="scripts/main.js"></script>
-    <!--  -->
+    
 </body>
 
 </html>
