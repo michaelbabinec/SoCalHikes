@@ -18,12 +18,12 @@ $hashed_pass = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the 
 // Insert user data into the database
 $sql = "INSERT INTO USERS (username, passwrd, birthday) VALUES ('$username', '$hashed_pass', '$birthday')";
 
-if ($conn->query($sql) === TRUE) {
+if ($link->query($sql) === TRUE) {
     echo "Account created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $link->error;
 }
 
-$conn->close();
+$link->close();
 
 ?>

@@ -14,7 +14,7 @@
         <label for= "username">Username:</label>
         <input type="text" id="username" name="username" required>
         
-        <label for="password" color: #ffffff>Password:</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
         <label for="confirmPassword">Confirm Password:</label>
@@ -30,6 +30,6 @@
 </body>
 
 <footer>
-    <button class= "btlogin-button" onclick=location.href="login.html">Go to Log In</button>
+    <button class= "btlogin-button" onclick=location.href="login.php">Go to Log In</button>
 </footer>
 </html>
