@@ -16,7 +16,8 @@ CREATE TABLE TRAILS (
     end_lat decimal (8, 6),
     end_long decimal (9, 6),
     difficulty int(1) ,
-    completion_time int(4), 
+    completion_time int(4),
+    maplink varchar(500),
     PRIMARY KEY (trailID)
 
 );
@@ -75,10 +76,16 @@ CREATE TABLE TRAIL_FEATURES (
     foreign key (featureID) references FEATURE_LIST (featureID)
 );
 
-CREATE TRIGGER sch_score_UPDATE AFTER INSERT ON COMPLETED_TRAILS FOR EACH ROW
+CREATE TRIGGER sch_score_INSERT AFTER INSERT ON COMPLETED_TRAILS FOR EACH ROW
 UPDATE users
 set sch_score = sch_score + (SELECT difficulty FROM TRAILS WHERE trailID = new.trailID),
 	trail_count = trail_count + 1
+where userID = NEW.userID;
+
+CREATE TRIGGER sch_score_DELETE AFTER DELETE ON COMPLETED_TRAILS FOR EACH ROW
+UPDATE users
+set sch_score = sch_score - (SELECT difficulty FROM TRAILS WHERE trailID = new.trailID),
+	trail_count = trail_count - 1
 where userID = NEW.userID;
 
 -- This is an index of all trailID their trail_Name and city
