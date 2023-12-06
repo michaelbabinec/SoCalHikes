@@ -25,9 +25,12 @@ session_start();
     <div class="dropdown">
         <button class="dropdown-button">&#8801</button>
         <ul class="dropdown-menu">
-            <li><a href="test1.html">Liked Hikes</a></li>
-            <li><a href="login.php">Log In</a></li>
+            <li><a href="log_in.php">Log In</a></li>
             <li><a href="create_account.php">Create Account</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="hike_list.php">Hikes</a></li>
+            <li><a href="sch_leaderboard.php">SCH Leaderboard</a></li>
+
         </ul>
     </div>
 

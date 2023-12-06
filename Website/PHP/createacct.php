@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include('connect.php');
 
 $username = $_POST['username'];

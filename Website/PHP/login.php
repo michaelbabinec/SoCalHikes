@@ -2,7 +2,7 @@
 
 session_start();
 
-include("PHP/connect.php");
+include("connect.php");
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get user input
@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = mysqli_real_escape_string($link, $_POST["password"]);
 
     // Query to check if the username and password match
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $query = "SELECT * FROM users WHERE username='$username' AND passwrd='$password'";
     $result = mysqli_query($link, $query);
 
     // Check if the query was successful
