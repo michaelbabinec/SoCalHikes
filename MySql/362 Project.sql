@@ -41,6 +41,7 @@ CREATE TABLE COMPLETED_TRAILS (
 	userID int(10) NOT NULL,
     trailID int(5) NOT NULL,
     -- favorited boolean,
+    -- rating int(1),
     PRIMARY KEY (userID, trailID),
 	foreign key (userID) references USERS (userID),
     foreign key (trailID) references TRAILS (trailID)
