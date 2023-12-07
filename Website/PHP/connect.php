@@ -1,10 +1,9 @@
-<?php
 
-session_start();
+<?php
 
 $link = mysqli_connect('127.0.0.1', 'root', 'My*SQL*Password');
 
-if ($link->connect_error) {
+if (!$link->connect_error) {
     die('Could not connect: '.mysqli_error($link));
 }
 

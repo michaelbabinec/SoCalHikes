@@ -1,14 +1,13 @@
 <?php
-include('PHP/login.php');
+//include('PHP/login.php');
 session_start();
 
-/*
-if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserID']))
-{
- 
+if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
+    // Redirect to the Profile if logged in
+    header("Location: index.php");
+    exit();
 }
 
-*/
 ?>
 
 

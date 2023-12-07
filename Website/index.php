@@ -2,6 +2,15 @@
 
 session_start();
 
+/*
+if (!isset($_SESSION['userID']) || !isset($_SESSION['username'])) {
+    // Redirect to the login page if not logged in
+    header("Location: log_in.php");
+    exit();
+}
+*/
+
+
 ?>
 
 <html>
@@ -9,7 +18,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/styles.css"> <!-- Link to your CSS file for styling -->
+    <link rel="stylesheet" href="CSS/styles.css"> 
     <link rel="icon" href="favicon.ico?" type="image/x-icon">
     <title>SoCalHikes</title>
 

@@ -87,20 +87,6 @@ body {
     margin-bottom: 50px;
 }
 
-/* Style the like and dislike buttons */
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.like-button, .dislike-button {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
 .btlogin-button {
     background-color: #4caf50;
     border-color: #765c48;
@@ -116,13 +102,6 @@ body {
     background-color: #45a049;
 }
 
-.like-button, .dislike-button img{
-    width: 150px;
-}
-
-.like-button:hover, .dislike-button:hover {
-    opacity: 80%;
-}
 
 /* Dropdown container */
 .dropdown {

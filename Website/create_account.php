@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
+    // Redirect to the Profile if logged in
+    header("Location: index.php");
+    exit();
+}
+
+?>
+
 <html>
 <html lang="en">
 <head>
@@ -30,6 +42,6 @@
 </body>
 
 <footer>
-    <button class= "btlogin-button" onclick=location.href="login.php">Go to Log In</button>
+    <button class= "btlogin-button" onclick=location.href="log_in.php">Go to Log In</button>
 </footer>
 </html>
