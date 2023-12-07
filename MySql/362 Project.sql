@@ -26,7 +26,7 @@ ALTER TABLE TRAILS ADD CONSTRAINT Max_Difficulty CHECK (difficulty <= 3);
 DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
 	userID int(10) serial default value,
-    username varchar(15) NOT NULL,
+    username varchar(15) NOT NULL UNIQUE,
     passwrd varchar(60) NOT NULL,
     birthday date NOT NULL,
     sch_score int(5) DEFAULT 0,
@@ -84,9 +84,9 @@ where userID = NEW.userID;
 
 CREATE TRIGGER sch_score_DELETE AFTER DELETE ON COMPLETED_TRAILS FOR EACH ROW
 UPDATE users
-set sch_score = sch_score - (SELECT difficulty FROM TRAILS WHERE trailID = new.trailID),
+set sch_score = sch_score - (SELECT difficulty FROM TRAILS WHERE trailID = OLD.trailID),
 	trail_count = trail_count - 1
-where userID = NEW.userID;
+where userID = OLD.userID;
 
 -- This is an index of all trailID their trail_Name and city
 DROP VIEW IF EXISTS Trail_Index;
@@ -159,7 +159,8 @@ VALUES ('Enterprise', '1234567890', '2005-12-20'),
 		('Defiant','1234567890', '2000-08-06'),
         ('Voyager', '1234567890', '1993-10-15'),
         ('Titan', '1234567890', '1984-07-18'),
-        ('Cerritos', '1234567890', '1965-12-23');
+        ('Cerritos', '1234567890', '1965-12-23'),
+        ('1', '1', '1965-12-23');
         
 INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
 VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL), (1, 6, NULL),
@@ -193,7 +194,8 @@ SELECT* FROM User_Completes ORDER BY userID;
 
 SELECT* FROM Who_Hiked ORDER BY trail_Name;
 
-SELECT* FROM User_Index WHERE favorite_trails IS NOT NULL;
+SELECT* FROM User_Index GROUP BY userID;
+SELECT* FROM Users;
 
         
         

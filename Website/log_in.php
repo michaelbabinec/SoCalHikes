@@ -1,8 +1,7 @@
 <?php
-//include('PHP/login.php');
-session_start();
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
 
-if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
+if (isset($_SESSION['userID'])) {
     // Redirect to the Profile if logged in
     header("Location: index.php");
     exit();
@@ -20,13 +19,13 @@ if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
 </head>
 <body id = "inputbox">
     
-    <form method="post" action="" class="registration-form">
+    <form method="post" action="PHP/login.php" class="registration-form">
         <h2>Login</h2>
         <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+        <input type="text" id="loginusername" name="username" required><br>
 
         <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
+        <input type="password" id="password" name="password" required><br>
 
         <input type="submit" value="Login">
     </form>

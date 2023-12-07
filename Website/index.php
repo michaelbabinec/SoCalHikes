@@ -1,6 +1,12 @@
 <?php
 
-session_start();
+/*
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+echo "<h3> PHP List All Session Variables</h3>";
+foreach ($_SESSION as $key=>$val)
+echo $key." ".$val."<br/>";
+*/
+
 
 /*
 if (!isset($_SESSION['userID']) || !isset($_SESSION['username'])) {
@@ -32,13 +38,17 @@ if (!isset($_SESSION['userID']) || !isset($_SESSION['username'])) {
 </head>
 <body>
     <div class="dropdown">
-        <button class="dropdown-button">&#8801</button>
         <ul class="dropdown-menu">
             <li><a href="log_in.php">Log In</a></li>
             <li><a href="create_account.php">Create Account</a></li>
             <li><a href="profile.php">Profile</a></li>
             <li><a href="hike_list.php">Hikes</a></li>
             <li><a href="sch_leaderboard.php">SCH Leaderboard</a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href="log_out.php">Log Out</a></li>
 
         </ul>
     </div>
