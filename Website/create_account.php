@@ -43,5 +43,6 @@ if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
 
 <footer>
     <button class= "btlogin-button" onclick=location.href="log_in.php">Go to Log In</button>
+    <button class= "btlogin-button" onclick=location.href="index.php">Back to Home</button>
 </footer>
 </html>

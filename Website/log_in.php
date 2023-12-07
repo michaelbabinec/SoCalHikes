@@ -34,5 +34,6 @@ if (isset($_SESSION['userID'])) {
 
 <footer>
     <button class= "btlogin-button" onclick=location.href="create_account.php">Create Account</button>
+    <button class= "btlogin-button" onclick=location.href="index.php">Back to Home</button>
 </footer>
 </html>

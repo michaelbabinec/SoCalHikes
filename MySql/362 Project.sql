@@ -11,10 +11,10 @@ CREATE TABLE TRAILS (
     trail_name varchar(50) NOT NULL,
     zipcode int(5) NOT NULL,
     city varchar(35) NOT NULL,
-    start_lat decimal(8, 6) NOT NULL,
-    start_long decimal(9, 6) NOT NULL,
-    end_lat decimal (8, 6),
-    end_long decimal (9, 6),
+    -- start_lat decimal(8, 6) NOT NULL,
+    -- start_long decimal(9, 6) NOT NULL,
+    -- end_lat decimal (8, 6),
+    -- end_long decimal (9, 6),
     difficulty int(1) ,
     completion_time int(4),
     maplink varchar(500),
@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS COMPLETED_TRAILS;
 CREATE TABLE COMPLETED_TRAILS (
 	userID int(10) NOT NULL,
     trailID int(5) NOT NULL,
-    favorited boolean,
+    -- favorited boolean,
     PRIMARY KEY (userID, trailID),
 	foreign key (userID) references USERS (userID),
     foreign key (trailID) references TRAILS (trailID)
@@ -92,10 +92,10 @@ where userID = OLD.userID;
 DROP VIEW IF EXISTS Trail_Index;
 CREATE VIEW Trail_Index AS SELECT trailID, trail_Name, city FROM TRAILS;
 
-DROP VIEW IF EXISTS User_Index;
-CREATE VIEW User_Index AS SELECT u.userID, u.username, u.trail_count, u.sch_score, (SELECT trail_name WHERE favorited = 1) as favorite_trails
-FROM USERS u LEFT JOIN COMPLETED_TRAILS ct ON u.userid = ct.userID
-LEFT JOIN TRAILS t ON ct.trailID = t.trailID;
+-- DROP VIEW IF EXISTS User_Index;
+-- CREATE VIEW User_Index AS SELECT u.userID, u.username, u.trail_count, u.sch_score, (SELECT trail_name WHERE favorited = 1) as favorite_trails
+-- FROM USERS u LEFT JOIN COMPLETED_TRAILS ct ON u.userid = ct.userID
+-- LEFT JOIN TRAILS t ON ct.trailID = t.trailID;
 
 -- This index maintains which featureID corresponds to which feature
 DROP VIEW IF EXISTS Feature_Index;
@@ -108,16 +108,16 @@ FROM TRAILS LEFT JOIN TRAIL_FEATURES ON TRAIL_FEATURES.trailID = TRAILS.trailID
 LEFT JOIN FEATURE_LIST ON TRAIL_FEATURES.featureID = FEATURE_LIST.featureID;
 
 -- This is a view of all the various trails a user has completed, with trail_Name, and if they've favorited a completed trail
-DROP VIEW IF EXISTS User_Completes;
-CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, COMPLETED_TRAILS.favorited, TRAILS.trail_Name, TRAILS.difficulty 
-FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
-LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
+-- DROP VIEW IF EXISTS User_Completes;
+-- CREATE VIEW User_Completes AS SELECT USERS.userID, USERS.username, COMPLETED_TRAILS.trailID, COMPLETED_TRAILS.favorited, TRAILS.trail_Name, TRAILS.difficulty 
+-- FROM USERS RIGHT JOIN COMPLETED_TRAILS ON USERS.userID = COMPLETED_TRAILS.userID
+-- LEFT JOIN TRAILS ON TRAILS.trailID = COMPLETED_TRAILS.trailID;
 
 
 -- This allows us to display all the users that have completed a given trail
-DROP VIEW IF EXISTS Who_Hiked;
-CREATE VIEW Who_Hiked AS SELECT trail_Name, username
-FROM User_Completes;
+-- DROP VIEW IF EXISTS Who_Hiked;
+-- CREATE VIEW Who_Hiked AS SELECT trail_Name, username
+-- FROM User_Completes;
 
 
 
@@ -125,14 +125,14 @@ FROM User_Completes;
 											
 
 -- This would be Trail Data, our database would be live with information like this already, and expanding with time and additions
-INSERT INTO TRAILS (trail_name, zipcode, city, start_lat, start_long, end_lat, end_long, completion_time, difficulty)
-VALUES ('CSUF Arboretum Loop', 92831, 'Fullerton', 33.88801, -117.88519, NULL, NULL, 35, 1),
-		('San Gabriel River Trail', 91702, 'Azusa', 34.15984, -117.90826, 33.74234, -118.11418, 670, 3),
-        ('Pacific Electric Trail', 91730, 'Rancho Cucamonga', 34.09514, -117.70402, 33.88801, -117.88519, 117, 2),
-        ('Fullerton Loop', 92831, 'Fullerton', 33.88033, -117.92604, NULL, NULL, 247, 3),
-        ('Santiago Creek Trail', 92706, 'Santa Ana', 33.77311, -117.86322, 33.7963, -117.76095, 195, 2),
-        ('San Diego Creek Trail', 92602, 'Irvine', 33.64507, -117.87047, 33.67258, -117.78789, 140, 1),
-        ('Hidden Valley Trail', 92277, 'Twentynine Palms', 34.01232, -116.16805, NULL, NULL, 24, 1);
+INSERT INTO TRAILS (trail_name, zipcode, city, completion_time, difficulty, maplink)
+VALUES ('Juanita Cooke Trail', 92835, 'Fullerton', 35, 1, 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d413.982844372198!2d-117.93354448835375!3d33.89318833433608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2a7c78f654c7%3A0xbeb704b16283f1bc!2sJuanita%20Cooke%20Trail!5e0!3m2!1sen!2sus!4v1701943492952!5m2!1sen!2sus'),
+		('Summit Ridge', 91765, 'Diamond Bar', 670, 1, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.700028775943!2d-117.80206330168596!3d34.00023796891883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c32ceee957c39b%3A0xe00b712f476219fe!2sSummitridge%20Trail!5e0!3m2!1sen!2sus!4v1701943651326!5m2!1sen!2sus'),
+        ('Anaheim Coves Trail', 92806, 'Anaheim', 117, 2, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1657.0601265098974!2d-117.86697049292066!3d33.835009316752654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd794050bd60f%3A0x701ed2565fb86daa!2sAnaheim%20Coves%20Lincoln%20Trailhead!5e0!3m2!1sen!2sus!4v1701943734851!5m2!1sen!2sus'),
+        ('Madrugada Trail', 91709, 'Chino Hills', 247, 3, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1653.7667537214256!2d-117.7522120350236!3d34.00451410030114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c32db867d352a7%3A0xc373a14b2af0f61c!2sMadrugada%20Trail!5e0!3m2!1sen!2sus!4v1701943838177!5m2!1sen!2sus'),
+        ('Rimcrest Trail', 92886, 'Yorba Linda', 195, 2, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6622.6802118643745!2d-117.79204014758201!3d33.906645228690344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd23395c9a555%3A0xea1444cea4d31590!2sRimcrest%20Trail%20Head!5e0!3m2!1sen!2sus!4v1701943937065!5m2!1sen!2sus'),
+        ('San Diego Creek Trail', 92602, 'Irvine', 140, 1, NULL),
+        ('Hidden Valley Trail', 92277, 'Twentynine Palms', 24, 1, NULL);
 	
 -- This data is a list of the various trail features
 INSERT INTO FEATURE_LIST (feature_Name)
@@ -162,12 +162,12 @@ VALUES ('Enterprise', '1234567890', '2005-12-20'),
         ('Cerritos', '1234567890', '1965-12-23'),
         ('1', '1', '1965-12-23');
         
-INSERT INTO COMPLETED_TRAILS(userID, trailID, favorited)
-VALUES (1, 1, NULL), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, NULL), (1, 6, NULL),
-		(2, 4, NULL),(2, 5, NULL),(2, 2, 1), (2, 6, 1),
-        (3, 3, 1), (3, 6, NULL),
-        (4, 1, NULL),(4, 3, NULL), (4, 6, 1),
-        (5, 1, NULL),(5, 2, 1),(5, 5, NULL), (5, 4, NULL), (5, 6, 1);
+INSERT INTO COMPLETED_TRAILS(userID, trailID)
+VALUES (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
+		(2, 4),(2, 5),(2, 2), (2, 6),
+        (3, 3), (3, 6),
+        (4, 1),(4, 3), (4, 6),
+        (5, 1),(5, 2),(5, 5), (5, 4), (5, 6);
 
 INSERT INTO DESIRED_TRAILS(userID, trailID)
 VALUES (2, 3),
@@ -190,12 +190,13 @@ SELECT* FROM Feature_Index ORDER BY featureID;
 
 SELECT* FROM Trail_Feature_Index ORDER BY trail_Name;
 
-SELECT* FROM User_Completes ORDER BY userID; 
+-- SELECT* FROM User_Completes ORDER BY userID; 
 
-SELECT* FROM Who_Hiked ORDER BY trail_Name;
+-- SELECT* FROM Who_Hiked ORDER BY trail_Name;
 
-SELECT* FROM User_Index GROUP BY userID;
-SELECT* FROM Users;
+-- SELECT* FROM User_Index GROUP BY userID;
+
+SELECT* FROM Users ORDER BY sch_score DESC;
 
         
         
