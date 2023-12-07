@@ -74,8 +74,8 @@ include("PHP/leaderboard.php")
     <h1>SoCalHikes Leaderboard</h1>
 
     <div class="leaderboard-entry">
-        <span class="usernameh">User</span>
-        <span class="scoreh"> Score</span>
+        <span class="usernameh"><strong>User</strong></span>
+        <span class="scoreh"><strong>Score</strong></span>
     </div>
 
     <div class="leaderboard-entry">

@@ -1,7 +1,13 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE) session_start();
 
+if (!isset($_SESSION['userID'])){
+    header("Location: ../log_in.php");
+
+}
+
 include('connect.php');
+
 
 $userID = $_SESSION["userID"];
 $trailID = $_GET['trailid'];

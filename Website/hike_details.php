@@ -76,10 +76,10 @@ include("PHP/hikedetails.php");
     </div>
     <div id="hike-details" class="hike-details">
     <h2><?php echo($trailname)?></h2>
-        <p><strong>Zipcode:</strong><?php echo($zipcode)?></p>
-        <p><strong>City:</strong><?php echo($city)?></p>
-        <p><strong>Completion Time:</strong><?php echo($hiketime)?> minutes</p>
-        <p><strong>Difficulty Rating:</strong> <?php echo($difficulty)?></p>
+        <p><strong>Zipcode: </strong><?php echo($zipcode)?></p>
+        <p><strong>City: </strong><?php echo($city)?></p>
+        <p><strong>Completion Time: </strong><?php echo($hiketime)?> minutes</p>
+        <p><strong>Difficulty Rating: </strong> <?php echo($difficulty)?></p>
     </div>
 
     <form action="PHP/markcomplete.php" method="get">
